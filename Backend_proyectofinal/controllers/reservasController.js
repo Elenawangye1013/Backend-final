@@ -76,7 +76,7 @@ exports.crearReserva = (req, res) => {
   if (!id_usuario || !id_clase) {
     return res.status(400).send('Todos los campos son obligatorios');
   }
-
+  
   // Comprobar disponibilidad
   const sqlDisponibilidad = 'SELECT alumnos_reservados, cupo_maximo FROM clases WHERE id = ?';
   connection.query(sqlDisponibilidad, [id_clase], (error, resultado) => {
@@ -89,6 +89,20 @@ exports.crearReserva = (req, res) => {
     if (alumnos_reservados >= cupo_maximo) {
       return res.status(400).send('La clase está completa.');
     }
+
+      // Verificar que el usuario no tenga la misma reserva
+    const sqlVerificarReserva = 'SELECT * FROM reservas WHERE id_clase = ? AND id_usuario = ?';
+    connection.query(sqlVerificarReserva, [id_clase, id_usuario], (error, resultados) => {
+      if (error) {
+        console.error('Error al verificar la reserva: ' + error);
+        return res.status(500).send('Error interno del servidor');
+      }
+
+      if (resultados.length > 0) {
+        // Si ya existe una reserva
+        return res.status(400).send('Ya has reservado esta clase');
+      }
+    })
 
       // Crear reserva
       const nuevaReserva = {
