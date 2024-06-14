@@ -265,3 +265,17 @@ exports.cancelarReserva = (req, res) => {
     });
   });
 };
+
+// Obtener todas las clases
+exports.obtenerReservas = (req, res) => {
+  const sql = 'SELECT * FROM reservas';
+
+  connection.query(sql, (error, resultados) => {
+    if (error) {
+      console.error('Error al obtener las reservas: ' + error);
+      return res.status(500).send('Error interno del servidor');
+    }
+
+    res.json(resultados);
+  });
+};

@@ -37,22 +37,7 @@ const enviarCorreoCambios = (email, clase) => {
     });
 };
 
-// const enviarCorreoCancelacionClase = (email, clase) => {
-//     const mailOptions = {
-//       from: 'masterbackend17@gmail.com',
-//       to: email,
-//       subject: 'Cancelada una clase reservada',
-//       text: 'La clase que habías reservado ha sido cancelada. Sentimos las molestias.'
-//     };
-  
-//     transporter.sendMail(mailOptions, function(error, info){
-//       if (error) {
-//         console.log('Error al enviar el correo: ' + error);
-//       } else {
-//         console.log('Correo enviado: ' + info.response);
-//       }
-//     });
-// };
+
 
 // Crear  una clase 
 exports.crearClase = (req, res) => {
