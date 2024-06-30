@@ -3,8 +3,8 @@ FROM node:20
 # Directorio de trabajo dentro del contenedor
 WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY Backend_proyectofinal/package.json ./
+COPY Backend_proyectofinal/package-lock.json ./
 
 RUN npm install --production
 
