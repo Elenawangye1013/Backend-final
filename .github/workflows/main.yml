@@ -17,4 +17,4 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image
-        run: ddocker build -f Backend_proyectofinal/Dockerfile -t ejercicio_cloud:latest .
+        run: docker build -f Backend_proyectofinal/Dockerfile -t ejercicio_cloud:latest .
